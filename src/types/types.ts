@@ -9,6 +9,7 @@ export interface IMyItem {
   name: string;
   price: string;
   discount?: number;
+  url: string;
 }
 
 export type Flex = {
@@ -16,4 +17,11 @@ export type Flex = {
   align?: string;
   row?: string;
   height?: string;
+  margin?: string;
+  width?: string;
+};
+
+export type Span = {
+  color?: string;
+  deco?: string;
 };

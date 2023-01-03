@@ -6,7 +6,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import PersonIcon from "@mui/icons-material/Person";
-import { Button } from "@mui/material";
+import { Badge, Button } from "@mui/material";
 import DocumentScannerOutlinedIcon from "@mui/icons-material/DocumentScannerOutlined";
 import { styleForBigBox, styleForButton, styleForSmallBox } from "./style";
 
@@ -32,7 +32,14 @@ const Footer = () => {
         }}
       >
         <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+        <BottomNavigationAction
+          label="Favorites"
+          icon={
+            <Badge badgeContent={4} color="secondary">
+              <FavoriteIcon />
+            </Badge>
+          }
+        />
         <BottomNavigationAction disabled={true} />
         <BottomNavigationAction
           label="Basket"

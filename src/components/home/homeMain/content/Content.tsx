@@ -15,7 +15,7 @@ const Content = () => {
 
   return (
     <>
-      <Stack spacing={2} sx={{ marginTop: "10px" }}>
+      <Stack spacing={2} sx={{ margin: "10px 0" }}>
         <Pagination
           count={Math.ceil(items.length / postsPerPage)}
           shape="rounded"
@@ -27,7 +27,7 @@ const Content = () => {
         container
         rowSpacing={3}
         columnSpacing={{ xs: 2, sm: 2, md: 3 }}
-        sx={{ marginTop: "10px", marginBottom: "30px" }}
+        sx={{ marginBottom: "30px" }}
       >
         {currentItem.map((el) => (
           <Grid item xs={6} key={el.id}>

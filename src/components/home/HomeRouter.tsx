@@ -9,6 +9,7 @@ const HomeRouter: React.FC = () => {
     <Main>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/prod/:id" element={<Home />} />
       </Routes>
     </Main>
   );

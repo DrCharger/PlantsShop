@@ -33,8 +33,9 @@ export const Flexer = styled("div")<Flex>`
   flex-direction: ${(props) => props.row || "row"};
   align-items: ${(props) => props.align || "center"};
   justify-content: ${(props) => props.justify || "center"};
-  margin-bottom: 5%;
+  margin-bottom: ${(props) => props.margin || "5%"};
   height: ${(props) => props.height || "100%"};
+  width: ${(props) => props.width || "100%"};
 `;
 
 export const Absoluter = styled("div")`
