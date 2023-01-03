@@ -12,4 +12,6 @@ export const StyledDiscount = styled.span<Span>`
 export const StyledSpan = styled.span<Span>`
   color: ${(props) => props.color || "#000"};
   text-decoration: ${(props) => props.deco || "none"};
+  font-size: ${(props) => props.size || "18px"};
+  margin: ${(props) => props.margin || "0"};
 `;

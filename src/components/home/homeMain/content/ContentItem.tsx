@@ -28,11 +28,13 @@ const ContentItem: React.FC<ContentItemProps> = ({ el }) => {
             <Typography gutterBottom variant="h5" component="div">
               {el.name}
             </Typography>
-
             {el.discount ? (
               <Flexer justify="space-between" align="end" margin="0">
                 <StyledSpan>
-                  $ {Number(el.price) * (1 - el.discount / 100)}
+                  ${" "}
+                  {Math.floor(
+                    Number(el.price) * (1 - el.discount / 100)
+                  ).toFixed(2)}
                 </StyledSpan>
                 <StyledSpan color="rgb(181, 181, 181)" deco="line-through">
                   $ {Number(el.price).toFixed(2)}

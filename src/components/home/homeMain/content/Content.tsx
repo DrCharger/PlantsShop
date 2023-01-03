@@ -27,7 +27,7 @@ const Content = () => {
         container
         rowSpacing={3}
         columnSpacing={{ xs: 2, sm: 2, md: 3 }}
-        sx={{ marginBottom: "30px" }}
+        sx={{ marginBottom: "120px" }}
       >
         {currentItem.map((el) => (
           <Grid item xs={6} key={el.id}>
