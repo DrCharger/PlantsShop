@@ -1,0 +1,8 @@
+.dot {
+  background-color: rgba(70, 163, 88, 100%) !important;
+}
+
+.carousel-status {
+  display: none !important;
+  align-items: center;
+}
