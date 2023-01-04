@@ -33,7 +33,7 @@ export const Flexer = styled("div")<Flex>`
   flex-direction: ${(props) => props.row || "row"};
   align-items: ${(props) => props.align || "center"};
   justify-content: ${(props) => props.justify || "center"};
-  margin-bottom: ${(props) => props.margin || "5%"};
+  margin: ${(props) => props.margin || "0 0 5% 0"};
   height: ${(props) => props.height || "100%"};
   width: ${(props) => props.width || "100%"};
 `;

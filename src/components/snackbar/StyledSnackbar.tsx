@@ -1,13 +1,14 @@
 import * as React from "react";
 
 import { SnackbarProvider, VariantType, useSnackbar } from "notistack";
+import { NotistackProps } from "../../types/propTypes";
 
-function MyApp() {
+const MyApp: React.FC<NotistackProps> = ({ text }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleClickVariant = (variant: VariantType) => () => {
     // variant could be success, error, warning, info, or default
-    enqueueSnackbar("This is a success message!", { variant });
+    enqueueSnackbar(`The ${text} is in the cart!`, { variant });
   };
 
   return (
@@ -17,16 +18,16 @@ function MyApp() {
       </div>
     </React.Fragment>
   );
-}
+};
 
-export default function IntegrationNotistack() {
+export const IntegrationNotistack: React.FC<NotistackProps> = ({ text }) => {
   return (
     <SnackbarProvider
       maxSnack={3}
       autoHideDuration={1500}
       anchorOrigin={{ vertical: "top", horizontal: "center" }}
     >
-      <MyApp />
+      <MyApp text={text} />
     </SnackbarProvider>
   );
-}
+};

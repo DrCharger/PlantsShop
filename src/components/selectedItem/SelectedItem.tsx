@@ -20,6 +20,7 @@ type SelectedItemProps = {
   minusFavourites: (id: number) => MinusFavouriteAction;
   setOrder: (order: OrderType) => OrderAction;
   favourites: IMyItem[];
+  quantity: number;
 };
 
 const SelectedItem: React.FC<SelectedItemProps> = (props) => {
@@ -80,6 +81,7 @@ const SelectedItem: React.FC<SelectedItemProps> = (props) => {
         el={findedItem}
         navigate={navigate}
         setOrder={props.setOrder}
+        quantity={props.quantity}
       />
     </>
   );

@@ -23,7 +23,7 @@ type HomeRoterProps = {
   setFavourites: (fav: IMyItem) => PlusFavouriteAction;
   setOrder: (order: OrderType) => OrderAction;
   minusFavourites: (id: number) => MinusFavouriteAction;
-  order: OrderType[];
+  orderList: OrderType[];
   favourites: IMyItem[];
 };
 
@@ -40,10 +40,11 @@ const HomeRouter: React.FC<HomeRoterProps> = (props) => {
               minusFavourites={props.minusFavourites}
               favourites={props.favourites}
               setOrder={props.setOrder}
+              quantity={props.orderList.length}
             />
           }
         />
-        <Route path="/cart" element={<Cart order={props.order} />} />
+        <Route path="/cart" element={<Cart orderList={props.orderList} />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </Main>
@@ -53,7 +54,7 @@ const HomeRouter: React.FC<HomeRoterProps> = (props) => {
 const mapState = (state: any) => {
   return {
     favourites: state.usersList.favourites,
-    order: state.usersList.order,
+    orderList: state.usersList.order,
   };
 };
 

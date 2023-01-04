@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { AbsoluteType } from "../../types/types";
+import { AbsoluteType, MyButton } from "../../types/types";
+import Badge, { BadgeProps } from "@mui/material/Badge";
 
 export const Absolute = styled.div<AbsoluteType>`
   position: absolute;
@@ -12,14 +13,23 @@ export const Absolute = styled.div<AbsoluteType>`
   right: ${(props) => props.right || "none"};
 `;
 
-export const CounterBTN = styled.button`
+export const CounterBTN = styled.button<MyButton>`
   background: #ffffff;
   border: 1px solid #eaeaea;
   box-shadow: 0px 4px 10px ${({ theme }) => theme.palette.primary.main};
   border-radius: 8px;
   color: ${({ theme }) => theme.palette.secondary.main};
-  width: 36px;
-  height: 36px;
-  margin: 0 25px;
-  font-size: 28px;
+  width: ${(props) => props.tall || "36px"};
+  height: ${(props) => props.tall || "36px"};
+  margin: ${(props) => props.margin || "0 25px"};
+  font-size: ${(props) => props.size || "28px"};
 `;
+
+export const StyledBadge = styled(Badge)<BadgeProps>(() => ({
+  "& .MuiBadge-badge": {
+    right: -5,
+    top: -5,
+    padding: "0 4px",
+    fontSize: "14px",
+  },
+}));

@@ -1,25 +1,15 @@
-import { IMyItem } from "../../types/types";
 import React, { useState } from "react";
-import { Button, IconButton, Rating, Typography } from "@mui/material";
-import { Flexer } from "../home/homeMain/Home.styles";
-import { StyledSpan } from "../home/homeMain/content/Content.styled";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Quantity from "./Quantity";
-import { NavigateFunction } from "react-router-dom";
-import { OrderAction } from "../../types/users.types";
-import { OrderType } from "../../types/item.types";
-import IntegrationNotistack from "../snackbar/StyledSnackbar";
-
-type DescriptionProps = {
-  el: IMyItem;
-  navigate: NavigateFunction;
-  setOrder: (order: OrderType) => OrderAction;
-};
+import { Button } from "@mui/material";
+import { DescriptionProps } from "../../types/propTypes";
+import ActionBTN from "./actionBTN/ActionBTN";
+import DescrTop from "./descrTop.tsx/DescrTop";
+import DescrFooter from "./descrFooter/DescrFooter";
 
 const Description: React.FC<DescriptionProps> = ({
   el,
   navigate,
   setOrder,
+  quantity,
 }) => {
   const [active, setActive] = useState("S");
   const [counter, setCounter] = useState(1);
@@ -45,24 +35,7 @@ const Description: React.FC<DescriptionProps> = ({
 
   return (
     <>
-      <Flexer justify="space-between">
-        <Typography variant="h5" component="h2" sx={{ fontWeight: 800 }}>
-          {el.name}
-        </Typography>
-        <Flexer width="70px" margin="0">
-          <Rating name="disabled" value={1} readOnly max={1} />
-          <span>4.5 (19)</span>
-        </Flexer>
-      </Flexer>
-      <Typography variant="subtitle1" sx={{ letterSpacing: 1 }}>
-        {el.description}
-      </Typography>
-      <Typography
-        variant="subtitle2"
-        sx={{ fontSize: "16px", marginTop: "10px", fontWeight: 800 }}
-      >
-        Size:
-      </Typography>
+      <DescrTop el={el} />
       {el.size &&
         el.size.map((sizes) => (
           <Button
@@ -81,61 +54,18 @@ const Description: React.FC<DescriptionProps> = ({
             {sizes}
           </Button>
         ))}
-      <Flexer row="column" justify="start" align="start">
-        <StyledSpan margin="5px 0" color="rgb(181, 181, 181)">
-          SKU: {el.CODE}
-        </StyledSpan>
-        <StyledSpan margin="5px 0" color="rgb(181, 181, 181)">
-          Categories: {el.categories}
-        </StyledSpan>
-        <StyledSpan margin="5px 0" color="rgb(181, 181, 181)">
-          Tags: {el.tags?.join(", ")}
-        </StyledSpan>
-      </Flexer>
-      <Flexer justify="space-between">
-        <Flexer margin="0" justify="start">
-          <StyledSpan size="20px" margin="0 10px 0 0">
-            Q-ty :{" "}
-          </StyledSpan>
-          {<Quantity counter={counter} setCounter={setCounter} />}
-        </Flexer>
-        <StyledSpan size="20px" color="green">
-          ${newPrice}
-        </StyledSpan>
-      </Flexer>
-      <Flexer justify="start">
-        <Button
-          variant="contained"
-          color="secondary"
-          sx={{
-            width: "200px",
-            height: "60px",
-            borderRadius: "40px",
-            boxShadow: "0px 10px 20px rgba(70, 163, 88, 0.3)",
-          }}
-          onClick={handleClickVariant}
-        >
-          <IntegrationNotistack />
-        </Button>
-
-        <IconButton
-          aria-label="cart"
-          onClick={() => navigate("/cart")}
-          size="large"
-          sx={{
-            width: "60px",
-            height: "60px",
-            backgroundColor: "#c8cdcd",
-            marginLeft: "20px",
-            boxShadow: "0px 10px 20px #c8cdcd",
-            ":hover": {
-              backgroundColor: "#c8cdcd",
-            },
-          }}
-        >
-          <ShoppingCartIcon />
-        </IconButton>
-      </Flexer>
+      <DescrFooter
+        el={el}
+        counter={counter}
+        newPrice={newPrice}
+        setCounter={setCounter}
+      />
+      <ActionBTN
+        quantity={quantity}
+        handleClickVariant={handleClickVariant}
+        navigate={navigate}
+        text={el.name}
+      />
     </>
   );
 };

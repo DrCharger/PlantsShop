@@ -10,8 +10,10 @@ export const StyledDiscount = styled.span<Span>`
 `;
 
 export const StyledSpan = styled.span<Span>`
+  display: inline-block;
   color: ${(props) => props.color || "#000"};
   text-decoration: ${(props) => props.deco || "none"};
   font-size: ${(props) => props.size || "18px"};
+  font-weight: ${(props) => props.weight || "400"};
   margin: ${(props) => props.margin || "0"};
 `;
