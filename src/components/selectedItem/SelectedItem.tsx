@@ -8,12 +8,29 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { items } from "../../data/items";
 import { useNavigate, useParams } from "react-router-dom";
 import Description from "./Description";
+import { IMyItem } from "../../types/item.types";
+import {
+  MinusFavouriteAction,
+  PlusFavouriteAction,
+} from "../../types/users.types";
 
-const SelectedItem = () => {
+type SelectedItemProps = {
+  setFavourites: (fav: IMyItem) => PlusFavouriteAction;
+  minusFavourites: (id: number) => MinusFavouriteAction;
+  favourites: IMyItem[];
+};
+
+const SelectedItem: React.FC<SelectedItemProps> = (props) => {
   const param = useParams();
   const navigate = useNavigate();
   const findedItem = items.find((elem) => elem.url === param.id);
-  const [heart, setHeart] = useState("green");
+  let color;
+  if (findedItem !== undefined) {
+    props.favourites.find((fav) => fav.id === findedItem.id) === undefined
+      ? (color = "green")
+      : (color = "red");
+  }
+  const [heart, setHeart] = useState(color);
 
   if (findedItem === undefined) return null;
 
@@ -37,7 +54,10 @@ const SelectedItem = () => {
           <IconButton
             aria-label="like"
             sx={{ color: heart }}
-            onClick={() => setHeart("red")}
+            onClick={() => {
+              setHeart("red");
+              props.setFavourites(findedItem);
+            }}
           >
             <FavoriteBorderIcon />
           </IconButton>
@@ -45,13 +65,16 @@ const SelectedItem = () => {
           <IconButton
             aria-label="like"
             sx={{ color: heart }}
-            onClick={() => setHeart("green")}
+            onClick={() => {
+              setHeart("green");
+              props.minusFavourites(findedItem.id);
+            }}
           >
             <FavoriteIcon />
           </IconButton>
         )}
       </Absolute>
-      <Description el={findedItem} />
+      <Description el={findedItem} navigate={navigate} />
     </>
   );
 };

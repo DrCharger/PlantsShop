@@ -5,23 +5,25 @@ import { Flexer } from "../home/homeMain/Home.styles";
 import { StyledSpan } from "../home/homeMain/content/Content.styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Quantity from "./Quantity";
+import { NavigateFunction } from "react-router-dom";
 
 type DescriptionProps = {
   el: IMyItem;
+  navigate: NavigateFunction;
 };
 
-const Description: React.FC<DescriptionProps> = ({ el }) => {
+const Description: React.FC<DescriptionProps> = ({ el, navigate }) => {
   const [active, setActive] = useState("S");
   const [counter, setCounter] = useState(1);
 
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> = () => {
+  const handleClick = (link: string) => {
     const newObject = {
       ...el,
       totalPrice: newPrice,
       quantity: counter,
       size: active,
     };
-
+    navigate(`/${link}`);
     console.log(newObject);
   };
 
@@ -101,12 +103,13 @@ const Description: React.FC<DescriptionProps> = ({ el }) => {
             borderRadius: "40px",
             boxShadow: "0px 10px 20px rgba(70, 163, 88, 0.3)",
           }}
-          onClick={handleClick}
+          onClick={() => handleClick("checkout")}
         >
           Buy Now
         </Button>
         <IconButton
           aria-label="cart"
+          onClick={() => handleClick("cart")}
           size="large"
           sx={{
             width: "60px",
@@ -114,7 +117,6 @@ const Description: React.FC<DescriptionProps> = ({ el }) => {
             backgroundColor: "#c8cdcd",
             marginLeft: "20px",
             boxShadow: "0px 10px 20px #c8cdcd",
-
             ":hover": {
               backgroundColor: "#c8cdcd",
             },

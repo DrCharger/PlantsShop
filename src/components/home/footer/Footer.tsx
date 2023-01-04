@@ -9,8 +9,13 @@ import PersonIcon from "@mui/icons-material/Person";
 import { Badge, Button } from "@mui/material";
 import DocumentScannerOutlinedIcon from "@mui/icons-material/DocumentScannerOutlined";
 import { styleForBigBox, styleForButton, styleForSmallBox } from "./style";
+import { IMyItem } from "../../../types/item.types";
 
-const Footer = () => {
+type FooterProps = {
+  favourites: IMyItem[];
+};
+
+const Footer: React.FC<FooterProps> = ({ favourites }) => {
   const [value, setValue] = React.useState(0);
 
   return (
@@ -35,7 +40,7 @@ const Footer = () => {
         <BottomNavigationAction
           label="Favorites"
           icon={
-            <Badge badgeContent={4} color="secondary">
+            <Badge badgeContent={favourites.length} color="secondary">
               <FavoriteIcon />
             </Badge>
           }

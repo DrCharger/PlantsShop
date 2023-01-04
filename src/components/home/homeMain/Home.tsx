@@ -6,8 +6,13 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import MyCarousel from "../carousel/MyCarousel";
 import Footer from "../footer/Footer";
 import Content from "./content/Content";
+import { IMyItem } from "../../../types/item.types";
 
-const Home: React.FC = () => {
+type HomeProps = {
+  favourites: IMyItem[];
+};
+
+const Home: React.FC<HomeProps> = ({ favourites }) => {
   return (
     <>
       <Flexer>
@@ -21,7 +26,7 @@ const Home: React.FC = () => {
       </Flexer>
       <MyCarousel />
       <Content />
-      <Footer />
+      <Footer favourites={favourites} />
     </>
   );
 };
