@@ -6,6 +6,7 @@ const initialState: UserState = {
   usersList: [],
   cart: [],
   favourites: [],
+  order: [],
 };
 
 const usersReducer = (state = initialState, action: ALLActions): UserState => {
@@ -20,6 +21,11 @@ const usersReducer = (state = initialState, action: ALLActions): UserState => {
     //     ...state,
     //     user: action.payload.user,
     //   };
+    case UserActionTypes.SET_ORDER:
+      return {
+        ...state,
+        order: state.order.concat(action.payload.order),
+      };
     case UserActionTypes.FAVOURITES:
       return {
         ...state,

@@ -1,11 +1,12 @@
 import { UserActionTypes } from "../usersStore/users.actions";
-import { IMyItem } from "../types/item.types";
+import { IMyItem, OrderType } from "../types/item.types";
 
 export interface UserState {
   user: {};
   usersList: never[];
   cart: never[];
   favourites: IMyItem[];
+  order: OrderType[];
 }
 
 export interface UsersListAction {
@@ -24,9 +25,14 @@ export interface UserAction {
   type: UserActionTypes.SELECTED_USER;
   payload: {};
 }
+export interface OrderAction {
+  type: UserActionTypes.SET_ORDER;
+  payload: { order: OrderType };
+}
 
 export type ALLActions =
   | UsersListAction
   | PlusFavouriteAction
   | MinusFavouriteAction
-  | UserAction;
+  | UserAction
+  | OrderAction;

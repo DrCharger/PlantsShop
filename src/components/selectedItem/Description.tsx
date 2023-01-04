@@ -6,32 +6,42 @@ import { StyledSpan } from "../home/homeMain/content/Content.styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Quantity from "./Quantity";
 import { NavigateFunction } from "react-router-dom";
+import { OrderAction } from "../../types/users.types";
+import { OrderType } from "../../types/item.types";
+import IntegrationNotistack from "../snackbar/StyledSnackbar";
 
 type DescriptionProps = {
   el: IMyItem;
   navigate: NavigateFunction;
+  setOrder: (order: OrderType) => OrderAction;
 };
 
-const Description: React.FC<DescriptionProps> = ({ el, navigate }) => {
+const Description: React.FC<DescriptionProps> = ({
+  el,
+  navigate,
+  setOrder,
+}) => {
   const [active, setActive] = useState("S");
   const [counter, setCounter] = useState(1);
 
-  const handleClick = (link: string) => {
+  const handleClickVariant = () => {
     const newObject = {
-      ...el,
+      id: el.id,
+      img: el.img,
+      name: el.name,
+      price: newPriceOne,
       totalPrice: newPrice,
       quantity: counter,
-      size: active,
+      choosenSize: active,
     };
-    navigate(`/${link}`);
-    console.log(newObject);
+    setOrder(newObject);
   };
 
-  const newPrice = el.discount
-    ? (
-        Math.floor(Number(el.price) * (1 - el.discount / 100)) * counter
-      ).toFixed(2)
-    : (Number(el.price) * counter).toFixed(2);
+  const newPriceOne = el.discount
+    ? Math.floor(Number(el.price) * (1 - el.discount / 100)).toFixed(2)
+    : Number(el.price).toFixed(2);
+
+  const newPrice = (Number(newPriceOne) * counter).toFixed(2);
 
   return (
     <>
@@ -103,13 +113,14 @@ const Description: React.FC<DescriptionProps> = ({ el, navigate }) => {
             borderRadius: "40px",
             boxShadow: "0px 10px 20px rgba(70, 163, 88, 0.3)",
           }}
-          onClick={() => handleClick("checkout")}
+          onClick={handleClickVariant}
         >
-          Buy Now
+          <IntegrationNotistack />
         </Button>
+
         <IconButton
           aria-label="cart"
-          onClick={() => handleClick("cart")}
+          onClick={() => navigate("/cart")}
           size="large"
           sx={{
             width: "60px",

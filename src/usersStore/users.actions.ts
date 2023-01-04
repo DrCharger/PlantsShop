@@ -1,9 +1,10 @@
 import {
   MinusFavouriteAction,
+  OrderAction,
   PlusFavouriteAction,
 } from "../types/users.types";
 import { Dispatch } from "redux";
-import { IMyItem } from "../types/item.types";
+import { IMyItem, OrderType } from "../types/item.types";
 import * as usersGateWays from "./users.gateWays";
 
 // import { usersSelector } from "./users.selectors";
@@ -13,6 +14,7 @@ export enum UserActionTypes {
   SELECTED_USER = "SELECTED_USER",
   FAVOURITES = "FAVOURITES",
   MINUS_FAVOURITES = "MINUS_FAVOURITES",
+  SET_ORDER = "SET_ORDER",
 }
 
 export const setUserInfo = (user: any) => {
@@ -20,6 +22,15 @@ export const setUserInfo = (user: any) => {
     type: UserActionTypes.SELECTED_USER,
     payload: {
       user,
+    },
+  };
+};
+
+export const setOrder = (order: OrderType): OrderAction => {
+  return {
+    type: UserActionTypes.SET_ORDER,
+    payload: {
+      order,
     },
   };
 };
