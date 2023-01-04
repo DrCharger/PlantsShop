@@ -26,6 +26,11 @@ const usersReducer = (state = initialState, action: ALLActions): UserState => {
         ...state,
         order: state.order.concat(action.payload.order),
       };
+    case UserActionTypes.MINUS_ORDER:
+      return {
+        ...state,
+        order: state.order.filter((item) => item.id !== action.payload.id),
+      };
     case UserActionTypes.FAVOURITES:
       return {
         ...state,

@@ -1,5 +1,5 @@
 import { NavigateFunction } from "react-router-dom";
-import { OrderAction } from "./users.types";
+import { OrderAction, OrderFilterAction } from "./users.types";
 import { OrderType } from "./item.types";
 import { IMyItem } from "./types";
 
@@ -34,12 +34,12 @@ export type NotistackProps = {
 
 export type CartProps = {
   orderList: OrderType[];
+  minusOrder: (id: number) => OrderFilterAction;
 };
 
 export type CartItemProps = {
   order: OrderType;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  open: boolean;
+  minusOrder: (id: number) => OrderFilterAction;
 };
 
 export type QuantityTypeProps = {

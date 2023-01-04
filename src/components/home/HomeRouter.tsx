@@ -7,22 +7,15 @@ import SelectedItem from "../selectedItem/SelectedItem";
 import Cart from "../cart/Cart";
 import Checkout from "../checkout/Checkout";
 import { connect } from "react-redux";
-import {
-  minusFavourites,
-  setFavourites,
-  setOrder,
-} from "src/usersStore/users.actions";
+import * as actions from "src/usersStore/users.actions";
 import { IMyItem, OrderType } from "../../types/item.types";
-import {
-  MinusFavouriteAction,
-  OrderAction,
-  PlusFavouriteAction,
-} from "../../types/users.types";
+import * as actionTypes from "../../types/users.types";
 
 type HomeRoterProps = {
-  setFavourites: (fav: IMyItem) => PlusFavouriteAction;
-  setOrder: (order: OrderType) => OrderAction;
-  minusFavourites: (id: number) => MinusFavouriteAction;
+  setFavourites: (fav: IMyItem) => actionTypes.PlusFavouriteAction;
+  setOrder: (order: OrderType) => actionTypes.OrderAction;
+  minusFavourites: (id: number) => actionTypes.MinusFavouriteAction;
+  minusOrder: (id: number) => actionTypes.OrderFilterAction;
   orderList: OrderType[];
   favourites: IMyItem[];
 };
@@ -44,7 +37,12 @@ const HomeRouter: React.FC<HomeRoterProps> = (props) => {
             />
           }
         />
-        <Route path="/cart" element={<Cart orderList={props.orderList} />} />
+        <Route
+          path="/cart"
+          element={
+            <Cart orderList={props.orderList} minusOrder={props.minusOrder} />
+          }
+        />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </Main>
@@ -59,9 +57,10 @@ const mapState = (state: any) => {
 };
 
 const mapDispatch = {
-  setFavourites: setFavourites,
-  minusFavourites: minusFavourites,
-  setOrder: setOrder,
+  setFavourites: actions.setFavourites,
+  minusFavourites: actions.minusFavourites,
+  setOrder: actions.setOrder,
+  minusOrder: actions.minusOrder,
 };
 
 export default connect(mapState, mapDispatch)(HomeRouter);

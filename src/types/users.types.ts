@@ -29,10 +29,15 @@ export interface OrderAction {
   type: UserActionTypes.SET_ORDER;
   payload: { order: OrderType };
 }
+export interface OrderFilterAction {
+  type: UserActionTypes.MINUS_ORDER;
+  payload: { id: number };
+}
 
 export type ALLActions =
   | UsersListAction
   | PlusFavouriteAction
   | MinusFavouriteAction
   | UserAction
-  | OrderAction;
+  | OrderAction
+  | OrderFilterAction;
