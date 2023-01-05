@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Span } from "../../../../types/types";
+import { Span } from "../../../../types/style.types";
 
 export const StyledDiscount = styled.span<Span>`
   color: #fff;

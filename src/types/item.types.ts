@@ -21,3 +21,14 @@ export interface OrderType {
   quantity: number;
   choosenSize: string;
 }
+
+export interface IBanner {
+  id: string;
+  img: any;
+}
+
+export interface ICoupon {
+  text: string;
+  discount: number;
+  used: boolean;
+}

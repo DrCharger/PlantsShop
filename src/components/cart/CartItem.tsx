@@ -1,16 +1,29 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Typography } from "@mui/material";
 import { CartItemProps } from "../../types/propTypes";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Flexer } from "../home/homeMain/Home.styles";
 import { StyledSpan } from "../home/homeMain/content/Content.styled";
-import Quantity from "../selectedItem/Quantity";
+import Quantity from "./quantity/Quantity";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton/IconButton";
+import { connect } from "react-redux";
+import { editOrder } from "src/usersStore/users.actions";
+import { editArrByCount } from "src/utilits/utilits";
 
-const CartItem: React.FC<CartItemProps> = ({ order, minusOrder }) => {
+const CartItem: React.FC<CartItemProps> = ({
+  order,
+  minusOrder,
+  editOrder,
+  orderList,
+}) => {
   const [open, setOpen] = useState(false);
-
   const [counter, setCounter] = useState(order.quantity);
+
+  useEffect(() => {
+    editOrder(editArrByCount(orderList, order, counter));
+  }, [counter, order.id]);
+
   return (
     <>
       <Flexer width="120%" margin="0">
@@ -55,7 +68,7 @@ const CartItem: React.FC<CartItemProps> = ({ order, minusOrder }) => {
                     </StyledSpan>
                   </Typography>
                   <StyledSpan color="green" weight="800" size="18px">
-                    ${order.price}
+                    ${(Number(order.price) * counter).toFixed(2)}
                   </StyledSpan>
                 </Box>
               </Flexer>
@@ -64,9 +77,12 @@ const CartItem: React.FC<CartItemProps> = ({ order, minusOrder }) => {
               <Quantity
                 counter={counter}
                 setCounter={setCounter}
-                size="15px"
-                tall="25px"
+                editOrder={editOrder}
+                size="13px"
+                tall="20px"
                 margin="10px"
+                id={order.id}
+                orderSize={order.choosenSize}
               />
             </Flexer>
           </Flexer>
@@ -86,4 +102,8 @@ const CartItem: React.FC<CartItemProps> = ({ order, minusOrder }) => {
   );
 };
 
-export default CartItem;
+const mapDispatch = {
+  editOrder: editOrder,
+};
+
+export default connect(null, mapDispatch)(CartItem);

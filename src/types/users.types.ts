@@ -33,6 +33,10 @@ export interface OrderFilterAction {
   type: UserActionTypes.MINUS_ORDER;
   payload: { id: number };
 }
+export interface OrderEditAction {
+  type: UserActionTypes.EDIT_ORDER;
+  payload: { order: OrderType[] };
+}
 
 export type ALLActions =
   | UsersListAction
@@ -40,4 +44,5 @@ export type ALLActions =
   | MinusFavouriteAction
   | UserAction
   | OrderAction
-  | OrderFilterAction;
+  | OrderFilterAction
+  | OrderEditAction;

@@ -1,13 +1,21 @@
 import { NavigateFunction } from "react-router-dom";
-import { OrderAction, OrderFilterAction } from "./users.types";
+import {
+  MinusFavouriteAction,
+  OrderAction,
+  OrderEditAction,
+  OrderFilterAction,
+  PlusFavouriteAction,
+} from "./users.types";
 import { OrderType } from "./item.types";
-import { IMyItem } from "./types";
+import { IMyItem } from "./item.types";
 
 export type DescriptionProps = {
   el: IMyItem;
   navigate: NavigateFunction;
   setOrder: (order: OrderType) => OrderAction;
   quantity: number;
+  orderList: OrderType[];
+  editOrder: (order: OrderType[]) => OrderEditAction;
 };
 
 export type ActionBTNProps = {
@@ -40,12 +48,35 @@ export type CartProps = {
 export type CartItemProps = {
   order: OrderType;
   minusOrder: (id: number) => OrderFilterAction;
+  editOrder: (order: OrderType[]) => OrderEditAction;
+  orderList: OrderType[];
 };
 
 export type QuantityTypeProps = {
   counter: number;
   setCounter: React.Dispatch<React.SetStateAction<number>>;
-  size?: string;
-  tall?: string;
-  margin?: string;
+};
+
+export type QuantityProdTypeProps = {
+  counter: number;
+  setCounter: React.Dispatch<React.SetStateAction<number>>;
+  editOrder: (order: OrderType[]) => OrderEditAction;
+  size: string;
+  tall: string;
+  margin: string;
+  id: number;
+  orderSize: string;
+};
+
+export type ApplierPropsType = {
+  totalPrice: number;
+};
+
+export type SelectedItemProps = {
+  setFavourites: (fav: IMyItem) => PlusFavouriteAction;
+  minusFavourites: (id: number) => MinusFavouriteAction;
+  setOrder: (order: OrderType) => OrderAction;
+  favourites: IMyItem[];
+  quantity: number;
+  orderList: OrderType[];
 };

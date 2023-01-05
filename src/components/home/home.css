@@ -6,8 +6,3 @@
   display: none !important;
   align-items: center;
 }
-
-.main-cart {
-  min-height: 100vh;
-  overflow: hidden;
-}

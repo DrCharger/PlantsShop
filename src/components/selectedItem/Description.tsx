@@ -4,12 +4,17 @@ import { DescriptionProps } from "../../types/propTypes";
 import ActionBTN from "./actionBTN/ActionBTN";
 import DescrTop from "./descrTop.tsx/DescrTop";
 import DescrFooter from "./descrFooter/DescrFooter";
+import { connect } from "react-redux";
+import { editOrder } from "src/usersStore/users.actions";
+import { editArrByCount, findItemInArr } from "src/utilits/utilits";
 
 const Description: React.FC<DescriptionProps> = ({
   el,
+  quantity,
+  orderList,
   navigate,
   setOrder,
-  quantity,
+  editOrder,
 }) => {
   const [active, setActive] = useState("S");
   const [counter, setCounter] = useState(1);
@@ -24,7 +29,11 @@ const Description: React.FC<DescriptionProps> = ({
       quantity: counter,
       choosenSize: active,
     };
-    setOrder(newObject);
+    if (findItemInArr(orderList, newObject) === undefined) {
+      setOrder(newObject);
+    } else {
+      editOrder(editArrByCount(orderList, newObject));
+    }
   };
 
   const newPriceOne = el.discount
@@ -70,4 +79,8 @@ const Description: React.FC<DescriptionProps> = ({
   );
 };
 
-export default Description;
+const mapDispatch = {
+  editOrder: editOrder,
+};
+
+export default connect(null, mapDispatch)(Description);

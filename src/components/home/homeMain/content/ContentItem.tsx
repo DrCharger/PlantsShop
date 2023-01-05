@@ -1,5 +1,5 @@
 import React from "react";
-import { IMyItem } from "../../../../types/types";
+import { IMyItem } from "../../../../types/item.types";
 import {
   Card,
   CardActionArea,

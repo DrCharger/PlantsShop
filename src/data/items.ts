@@ -7,7 +7,7 @@ import image6 from "../img/prods/image6.png";
 import image7 from "../img/prods/image7.png";
 import image8 from "../img/prods/image8.png";
 import image9 from "../img/prods/image9.png";
-import { IMyItem } from "../types/types";
+import { IMyItem } from "../types/item.types";
 
 export const items: IMyItem[] = [
   {

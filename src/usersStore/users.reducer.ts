@@ -26,6 +26,11 @@ const usersReducer = (state = initialState, action: ALLActions): UserState => {
         ...state,
         order: state.order.concat(action.payload.order),
       };
+    case UserActionTypes.EDIT_ORDER:
+      return {
+        ...state,
+        order: action.payload.order,
+      };
     case UserActionTypes.MINUS_ORDER:
       return {
         ...state,

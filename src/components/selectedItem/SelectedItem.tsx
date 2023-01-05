@@ -8,20 +8,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { items } from "../../data/items";
 import { useNavigate, useParams } from "react-router-dom";
 import Description from "./Description";
-import { IMyItem, OrderType } from "../../types/item.types";
-import {
-  MinusFavouriteAction,
-  OrderAction,
-  PlusFavouriteAction,
-} from "../../types/users.types";
-
-type SelectedItemProps = {
-  setFavourites: (fav: IMyItem) => PlusFavouriteAction;
-  minusFavourites: (id: number) => MinusFavouriteAction;
-  setOrder: (order: OrderType) => OrderAction;
-  favourites: IMyItem[];
-  quantity: number;
-};
+import { SelectedItemProps } from "../../types/propTypes";
 
 const SelectedItem: React.FC<SelectedItemProps> = (props) => {
   const param = useParams();
@@ -82,6 +69,7 @@ const SelectedItem: React.FC<SelectedItemProps> = (props) => {
         navigate={navigate}
         setOrder={props.setOrder}
         quantity={props.quantity}
+        orderList={props.orderList}
       />
     </>
   );

@@ -34,6 +34,7 @@ const HomeRouter: React.FC<HomeRoterProps> = (props) => {
               favourites={props.favourites}
               setOrder={props.setOrder}
               quantity={props.orderList.length}
+              orderList={props.orderList}
             />
           }
         />

@@ -3,7 +3,7 @@ export const styleForBigBox = {
   marginLeft: "-5%",
   position: "fixed",
   bottom: 0,
-  background: "lightgrey",
+  background: "rgb(240, 240, 240)",
   padding: "10px",
   borderRadius: "20px 20px 0 0",
 };

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Flex } from "../../../types/types";
+import { Flex } from "../../../types/style.types";
 
 export const Input = styled("input")`
   height: 45px;

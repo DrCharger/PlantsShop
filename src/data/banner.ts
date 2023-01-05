@@ -1,7 +1,7 @@
 import main1 from "../img/main1.png";
 import main2 from "../img/main2.png";
 import main3 from "../img/main3.png";
-import { IBanner } from "../types/types";
+import { IBanner } from "../types/item.types";
 
 export const banner: IBanner[] = [
   {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AbsoluteType, MyButton } from "../../types/types";
+import { AbsoluteType, MyButton } from "../../types/style.types";
 import Badge, { BadgeProps } from "@mui/material/Badge";
 
 export const Absolute = styled.div<AbsoluteType>`

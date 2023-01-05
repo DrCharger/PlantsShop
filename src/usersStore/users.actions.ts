@@ -11,6 +11,7 @@ export enum UserActionTypes {
   MINUS_FAVOURITES = "MINUS_FAVOURITES",
   SET_ORDER = "SET_ORDER",
   MINUS_ORDER = "MINUS_ORDER",
+  EDIT_ORDER = "EDIT_ORDER",
 }
 
 export const setUserInfo = (user: any) => {
@@ -25,6 +26,14 @@ export const setUserInfo = (user: any) => {
 export const setOrder = (order: OrderType): actionTypes.OrderAction => {
   return {
     type: UserActionTypes.SET_ORDER,
+    payload: {
+      order,
+    },
+  };
+};
+export const editOrder = (order: OrderType[]): actionTypes.OrderEditAction => {
+  return {
+    type: UserActionTypes.EDIT_ORDER,
     payload: {
       order,
     },

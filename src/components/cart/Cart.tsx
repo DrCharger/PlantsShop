@@ -7,14 +7,16 @@ import { useNavigate } from "react-router-dom";
 import { StyledSpan } from "../home/homeMain/content/Content.styled";
 import { Flexer } from "../home/homeMain/Home.styles";
 import CartItem from "./CartItem";
-import Applier from "./Applier";
+import Applier from "./apply/Applier";
+import { marginCheck, pricer } from "src/utilits/utilits";
+import { StyledDiv } from "./Cart.styled";
 
 const Cart: React.FC<CartProps> = ({ orderList, minusOrder }) => {
-  console.log(orderList);
   const navigate = useNavigate();
+  let margin = marginCheck(orderList.length);
 
   return (
-    <div className="main-cart">
+    <StyledDiv margin={margin}>
       <Absolute top="5%" left="5%">
         <IconButton aria-label="back" onClick={() => navigate(-1)}>
           <ArrowBackIosNewIcon />
@@ -28,10 +30,11 @@ const Cart: React.FC<CartProps> = ({ orderList, minusOrder }) => {
           key={`${order.id}${order.choosenSize}${order.quantity}`}
           order={order}
           minusOrder={minusOrder}
+          orderList={orderList}
         />
       ))}
-      <Applier />
-    </div>
+      <Applier totalPrice={pricer(orderList)} />
+    </StyledDiv>
   );
 };
 
