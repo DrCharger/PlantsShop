@@ -1,23 +1,23 @@
 import Grid from "@mui/material/Grid";
-import { items } from "../../../../data/items";
 import ContentItem from "./ContentItem";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useState } from "react";
+import { ContentPropsType } from "../../../../types/propTypes";
 
-const Content = () => {
+const Content: React.FC<ContentPropsType> = ({ info, perPage }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(4);
+  const [postsPerPage] = useState(perPage);
 
   const indexOfLastItem = currentPage * postsPerPage;
   const indexOfFirstItem = indexOfLastItem - postsPerPage;
-  const currentItem = items.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItem = info.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <>
       <Stack spacing={2} sx={{ margin: "10px 0" }}>
         <Pagination
-          count={Math.ceil(items.length / postsPerPage)}
+          count={Math.ceil(info.length / postsPerPage)}
           shape="rounded"
           page={currentPage}
           onChange={(e, value) => setCurrentPage(value)}

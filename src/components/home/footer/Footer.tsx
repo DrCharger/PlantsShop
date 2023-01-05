@@ -9,14 +9,10 @@ import PersonIcon from "@mui/icons-material/Person";
 import { Badge, Button } from "@mui/material";
 import DocumentScannerOutlinedIcon from "@mui/icons-material/DocumentScannerOutlined";
 import { styleForBigBox, styleForButton, styleForSmallBox } from "./style";
-import { IMyItem } from "../../../types/item.types";
 import { useNavigate } from "react-router-dom";
+import { FooterProps } from "../../../types/propTypes";
 
-type FooterProps = {
-  favourites: IMyItem[];
-};
-
-const Footer: React.FC<FooterProps> = ({ favourites }) => {
+const Footer: React.FC<FooterProps> = ({ favourites, orderList }) => {
   const [value, setValue] = React.useState(0);
   const navigate = useNavigate();
 
@@ -41,7 +37,7 @@ const Footer: React.FC<FooterProps> = ({ favourites }) => {
         <BottomNavigationAction
           label="Home"
           icon={<HomeIcon />}
-          onClick={() => navigate("/home")}
+          onClick={() => navigate("/")}
         />
         <BottomNavigationAction
           label="Favorites"
@@ -50,15 +46,23 @@ const Footer: React.FC<FooterProps> = ({ favourites }) => {
               <FavoriteIcon />
             </Badge>
           }
-          onClick={() => navigate("/home")}
+          onClick={() => navigate("/favourite")}
         />
         <BottomNavigationAction disabled={true} />
         <BottomNavigationAction
           label="Basket"
-          icon={<ShoppingCartOutlinedIcon />}
+          icon={
+            <Badge badgeContent={orderList.length} color="secondary">
+              <ShoppingCartOutlinedIcon />
+            </Badge>
+          }
           onClick={() => navigate("/cart")}
         />
-        <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
+        <BottomNavigationAction
+          label="Profile"
+          icon={<PersonIcon />}
+          onClick={() => navigate("/profile")}
+        />
       </BottomNavigation>
     </Box>
   );

@@ -80,3 +80,22 @@ export type SelectedItemProps = {
   quantity: number;
   orderList: OrderType[];
 };
+
+export type FavouritePropsType = {
+  favourites: IMyItem[];
+};
+
+export type ContentPropsType = {
+  info: IMyItem[];
+  perPage: number;
+};
+
+export type FooterProps = {
+  favourites: IMyItem[];
+  orderList: OrderType[];
+};
+
+export type HomeProps = {
+  favourites: IMyItem[];
+  orderList: OrderType[];
+};

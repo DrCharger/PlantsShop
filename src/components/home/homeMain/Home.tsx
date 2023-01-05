@@ -6,27 +6,41 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import MyCarousel from "../carousel/MyCarousel";
 import Footer from "../footer/Footer";
 import Content from "./content/Content";
-import { IMyItem } from "../../../types/item.types";
+import { Route, Routes } from "react-router-dom";
+import Favourite from "src/components/favourite/Favourite";
+import { items } from "../../../data/items";
+import { HomeProps } from "../../../types/propTypes";
 
-type HomeProps = {
-  favourites: IMyItem[];
-};
-
-const Home: React.FC<HomeProps> = ({ favourites }) => {
+const Home: React.FC<HomeProps> = ({ favourites, orderList }) => {
   return (
     <>
-      <Flexer>
-        <Absoluter>
-          <SearchIcon sx={{ position: "absolute", top: "25%", left: "2%" }} />
-          <Input placeholder="Find your plants" />
-        </Absoluter>
-        <SearchButton>
-          <FilterListIcon sx={{ margin: "auto", fontSize: "30px" }} />
-        </SearchButton>
-      </Flexer>
-      <MyCarousel />
-      <Content />
-      <Footer favourites={favourites} />
+      <Routes>
+        <Route
+          path="*"
+          element={
+            <>
+              <Flexer>
+                <Absoluter>
+                  <SearchIcon
+                    sx={{ position: "absolute", top: "25%", left: "2%" }}
+                  />
+                  <Input placeholder="Find your plants" />
+                </Absoluter>
+                <SearchButton>
+                  <FilterListIcon sx={{ margin: "auto", fontSize: "30px" }} />
+                </SearchButton>
+              </Flexer>
+              <MyCarousel />
+              <Content info={items} perPage={4} />
+            </>
+          }
+        />
+        <Route
+          path="/favourite"
+          element={<Favourite favourites={favourites} />}
+        />
+      </Routes>
+      <Footer favourites={favourites} orderList={orderList} />
     </>
   );
 };

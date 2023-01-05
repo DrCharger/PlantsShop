@@ -24,7 +24,12 @@ const HomeRouter: React.FC<HomeRoterProps> = (props) => {
   return (
     <Main>
       <Routes>
-        <Route path="/" element={<Home favourites={props.favourites} />} />
+        <Route
+          path="/*"
+          element={
+            <Home favourites={props.favourites} orderList={props.orderList} />
+          }
+        />
         <Route
           path="/prod/:id"
           element={
